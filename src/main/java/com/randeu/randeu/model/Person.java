@@ -14,6 +14,7 @@ public class Person {
     private String surname;
     private String email;
     private String phone;
-    private int appointment_id;
+    private int appointmentId;
+    private int scheduleId;
     private String password;
 }
