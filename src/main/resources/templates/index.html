@@ -1,57 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th = "http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RANDEU Login Page</title>
     <link rel="stylesheet" th:href="@{/css/style.css}" />
-    <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,0,0"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,0,0" />
 </head>
 <body>
-<div class="login-card-container">
+    <div class="login-card-container">
         <div class="login-card">
             <div class="login-card-logo">
-                <img th:src="@{/image/randeutrans.png}" alt="logo" />
+                <img th:src="@{/image/randeutrans.png}" alt="logo">
             </div>
             <div class="login-card-header">
-                <h1>DOKUZ EYLUL UNIVERSITY<br />APPOINTMENT SYSTEM</h1>
+                <h1>DOKUZ EYLUL UNIVERSITY<br>APPOINTMENT SYSTEM</h1>
             </div>
-            <form class="login-card-form" action="signIn" method="post">
+            <form class="login-card-form">
                 <div class="form-item">
                     <span class="form-item-icon material-symbols-rounded">mail</span>
-                    <input
-                            id="mail"
-                            type="text"
-                            placeholder="*****@ogr.deu.edu.tr"
-                            name="email"
-                            required
-                            autofocus
-                    />
+                    <input type="text" placeholder="*****@ogr.deu.edu.tr" required autofocus>
                 </div>
                 <div class="form-item">
                     <span class="form-item-icon material-symbols-rounded">lock</span>
-                    <input
-                            id="pw"
-                            type="password"
-                            name="password"
-                            placeholder="**********"
-                            required
-                    />
+                    <input type="password" placeholder="**********" required>
                 </div>
                 <div class="form-item other">
                     <div class="checkbox">
-                        <input type="checkbox" id="rememberMeCheckBox" />
+                        <input type="checkbox" id="rememberMeCheckBox">
                         <label for="rememberMeCheckBox">Remember Me</label>
-                    </div>
+                    </div> 
                 </div>
                 <button type="submit">Sign In</button>
             </form>
         </div>
+    </div>
 
-</div>
 </body>
-</html>
+</html> 
