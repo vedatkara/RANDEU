@@ -3,11 +3,11 @@ package com.randeu.randeu.model;
 import java.io.Serializable;
 
 public class CoursesId implements Serializable {
-    private int course_id;
-    private int person_id;
+    private int courseId;
+    private int personId;
 
-    public CoursesId(int course_id, int person_id) {
-        this.course_id = course_id;
-        this.person_id = person_id;
+    public CoursesId(int courseId, int personId) {
+        this.courseId = courseId;
+        this.personId = personId;
     }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@DiscriminatorValue("not null")
 public class Person {
 
     @Id

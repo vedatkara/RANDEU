@@ -16,14 +16,27 @@
             <div class="login-card-header">
                 <h1>DOKUZ EYLUL UNIVERSITY<br>APPOINTMENT SYSTEM</h1>
             </div>
-            <form class="login-card-form">
+            <form class="login-card-form" action="signIn" method="post">
                 <div class="form-item">
                     <span class="form-item-icon material-symbols-rounded">mail</span>
-                    <input type="text" placeholder="*****@ogr.deu.edu.tr" required autofocus>
+                    <input
+                            id="mail"
+                            type="text"
+                            placeholder="*****@ogr.deu.edu.tr"
+                            name="email"
+                            required
+                            autofocus
+                    />
                 </div>
                 <div class="form-item">
                     <span class="form-item-icon material-symbols-rounded">lock</span>
-                    <input type="password" placeholder="**********" required>
+                    <input
+                            id="pw"
+                            type="password"
+                            name="password"
+                            placeholder="**********"
+                            required
+                    />
                 </div>
                 <div class="form-item other">
                     <div class="checkbox">
