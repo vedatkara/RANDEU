@@ -4,6 +4,7 @@ import com.randeu.randeu.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +20,15 @@ public class LoginController {
         return "index";
     }
 
-    @PostMapping("/signIn")
-    public ResponseEntity<Person> userSignIn(@ModelAttribute Person person){
-        return loginService.authenticate(person.getEmail(), person.getPassword());
+    @PostMapping("/randeu")
+    public String userSignIn(@ModelAttribute Person person){
+        loginService.authenticate(person.getEmail(), person.getPassword());
+        return "randeu";
+
     }
+
+
+
 
 
 }
