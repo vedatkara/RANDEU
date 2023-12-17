@@ -27,7 +27,7 @@ public class LoginService {
         }
         catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>(new Person(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(new Person(), HttpStatus.BAD_REQUEST);
     }
 }
