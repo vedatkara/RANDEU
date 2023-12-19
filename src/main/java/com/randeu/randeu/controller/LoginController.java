@@ -43,7 +43,25 @@ public class LoginController {
         }
     }
 
+    @RequestMapping("/appointments")
+    public String appointments() {
+        return "randeu";
+    }
 
+    @RequestMapping("/calendar")
+    public String calendar() {
+        return "calendar";
+    }
+
+    @RequestMapping("/notifications")
+    public String notifications() {
+        return "notifications";
+    }
+
+    @RequestMapping("/account")
+    public String defectDetails() {
+        return "account";
+    }
 
 
 

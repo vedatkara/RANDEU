@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RANDEU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS-->
+    <link rel="stylesheet" th:href="@{/css/randeu_style.css}"/>
+    
+    <!-- Icon JS-->
+    <script src="https://kit.fontawesome.com/033c9edf1d.js" crossorigin="anonymous"></script>
+    
+
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <img src="" alt="">
+        </div>
+        <ul class="menu">
+            <li>
+                <a th:href="@{appointments}" >
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Appointments</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{calendar}">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Calendar</span>
+                </a>
+            </li>
+            <li  class="active">
+                <a th:href="@{notifications}">
+                <i class="fa-solid fa-bell"></i>
+                <span>Notifications</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{account}">
+                <i class="fa-solid fa-user"></i>
+                <span>Account</span>
+                </a>
+            </li>
+            <li class="log-out">
+                <a th:href="@{login}">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main--content">
+        <div class="header--wrapper">
+            <div class="header--title">
+                <h2 class="text">NOTICIFATIONS</h2>
+            </div>
+
+            <div class="user--info">
+                <span class="text"><th:block th:text="${name}"></th:block><th:block th:text="${surname}"> </th:block></span>
+                <img src="../img/user.png" alt="">
+            </div>
+            
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-inner">                
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Custom JS-->
+    <script src="../js/appointments.js"></script>
+</body>
+</html>

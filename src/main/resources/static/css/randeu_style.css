@@ -20,7 +20,7 @@ body {
     bottom: 0;
     width: 105px;
     height: 100vh;
-    padding: 0 1.7rem;
+    padding: 30px 1.7rem;
     color: white;
     overflow: hidden;
     transition: all 0.5 linear;
@@ -32,12 +32,25 @@ body {
     transition: 0.5s;
 }
 
-.logo {
-    height: 80px;
-    padding: 16px;
+.sidebar logo img:first-child {
+    width: 50px;
+    padding: 20px;
+}
+
+.sidebar logo img:last-child {
+    display: none;
+}
+
+.sidebar:hover logo img:last-child {
+    display: block;
+}
+
+.sidebar:hover logo img:first-child {
+    display: none;
 }
 
 .menu {
+    margin-top: 100px;
     height: 88%;
     position: relative;
     list-style: none;
@@ -77,14 +90,14 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-
 }
 
 .main--content {
     position: relative;
-    background: #ebe9e9;
+    background: url("../img/background.jpg")
+    center / cover no-repeat fixed;
     width: 100%;
-    padding: 1rem;
+    backdrop-filter: blur(8px);
 }
 
 /* ALL ABOUT HEADER*/
@@ -104,7 +117,7 @@ body {
     /*border-radius: 10px;*/
     padding: 20px 2rem;
     margin-bottom: 1rem;
-    
+
 }
 
 .header--title {
@@ -118,37 +131,3 @@ body {
     gap: 1rem;
 }
 
-.card-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
-    margin: 20px 0;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 200px;
-    padding: 25px;
-    background-color: white;
-    box-sizing: border-box;
-    border-radius: 10px;
-    box-shadow: 0 6px 7px -4px rgba(0, 0 , 0 , 0.2);
-    border-left: 7px solid #000;
-}
-
-.appointment-date-text {
-    font-size: large;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.lecturer-name {
-    margin-bottom: 5px;
-}
-
-.card:hover {
-    border-left: 7px solid #00b627;
-
-}

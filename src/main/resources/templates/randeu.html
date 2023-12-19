@@ -9,75 +9,76 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
     <!-- Custom CSS-->
-    <link rel="stylesheet" th:href="@{/css/randeu_style.css}" />
+    <link rel="stylesheet" th:href="@{/css/randeu_style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/appointment.css}"/>
     <!-- Icon JS-->
     <script src="https://kit.fontawesome.com/033c9edf1d.js" crossorigin="anonymous"></script>
-    
+
 
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="logo">
-            <img src="" alt="">
-        </div>
-        <ul class="menu">
-            <li class="active">
-                <a href="randeu.html" >
+<div class="sidebar">
+    <div class="logo">
+        <img src="../img/randeu-closed.png" alt="">
+        <img src="../img/randeu-open.png" alt="">
+    </div>
+    <ul class="menu">
+        <li class="active">
+            <a th:href="@{appointments}" >
                 <i class="fa-solid fa-calendar-check"></i>
                 <span>Appointments</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
+            </a>
+        </li>
+        <li>
+            <a th:href="@{calendar}">
                 <i class="fa-solid fa-calendar-days"></i>
                 <span>Calendar</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
+            </a>
+        </li>
+        <li>
+            <a th:href="@{notifications}">
                 <i class="fa-solid fa-bell"></i>
                 <span>Notifications</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
+            </a>
+        </li>
+        <li>
+            <a th:href="@{account}">
                 <i class="fa-solid fa-user"></i>
                 <span>Account</span>
-                </a>
-            </li>
-            <li class="log-out">
-                <a href="#">
+            </a>
+        </li>
+        <li class="log-out">
+            <a th:href="@{login}">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 <span>Log out</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+            </a>
+        </li>
+    </ul>
+</div>
 
-    <div class="main--content">
-        <div class="header--wrapper">
-            <div class="header--title">
-                <h2 class="text">Appointments</h2>
-            </div>
-
-            <div class="user--info">
-                <span class="text"><th:block th:text="${name}">[name]</th:block>
-                <th:block th:text="${surname}">[surname]</th:block></span>
-                <img src="/img/user.png" alt="">
-            </div>
-            
+<div class="main--content">
+    <div class="header--wrapper">
+        <div class="header--title">
+            <h2 class="text">APPOINTMENTS</h2>
         </div>
-        <div class="card-container">
-            <div class="card">
-                <div class="card-inner">                
-                    <p class="appointment-date-text">01.01.2024 13:50</p>
-                    <p class="lecturer-name">Semih UTKU</p>
-                    <p class="address">Computer Engineering 302</p>
-                </div>
+
+        <div class="user--info">
+            <span class="text">Vedat Kara</span>
+            <img src="../img/user.png" alt="">
+        </div>
+
+    </div>
+    <div class="card-container">
+        <div class="card">
+            <div class="card-inner">
+                <p class="appointment-date-text">01.01.2024 13:50</p>
+                <p class="lecturer-name">Semih UTKU</p>
+                <p class="address">Computer Engineering 302</p>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -86,7 +87,7 @@
 
 
 
-    <!-- Custom JS-->
-    <script src="../js/appointments.js"></script>
+<!-- Custom JS-->
+<script src="../js/appointments.js"></script>
 </body>
 </html>
