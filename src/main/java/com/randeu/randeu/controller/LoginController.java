@@ -27,7 +27,7 @@ public class LoginController {
         ResponseEntity<Person> responseEntity = loginService.authenticate(person.getEmail(), person.getPassword());
         HttpStatus statusCode = (HttpStatus) responseEntity.getStatusCode();
 
-        if(statusCode == HttpStatus.OK) {
+        if(statusCode == HttpStatus.OK) {//The person exists.
             Person user = responseEntity.getBody();
             model.addAttribute("name", user.getName());
             model.addAttribute("surname", user.getSurname());
