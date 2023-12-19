@@ -1,6 +1,7 @@
 package com.randeu.randeu.controller;
 import com.randeu.randeu.model.Person;
 import com.randeu.randeu.service.LoginService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class LoginController {
     }
 
     @RequestMapping("/randeu")
-    public String userSignIn(@ModelAttribute Person person, Model model){
+    public String userSignIn(@ModelAttribute Person person, Model model, HttpSession session){
         ResponseEntity<Person> responseEntity = loginService.authenticate(person.getEmail(), person.getPassword());
         HttpStatus statusCode = (HttpStatus) responseEntity.getStatusCode();
 
@@ -31,6 +32,8 @@ public class LoginController {
             Person user = responseEntity.getBody();
             model.addAttribute("name", user.getName());
             model.addAttribute("surname", user.getSurname());
+            // Oturum bilgilerini sakla
+            session.setAttribute("loggedInUser", user);
             return "randeu";
         }else if(statusCode == HttpStatus.BAD_REQUEST){//The person exists but password is wrong.
             model.addAttribute("wrong_password", "Sorry, your password was incorrect. Please double-check your password.");
@@ -43,25 +46,7 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/appointments")
-    public String appointments() {
-        return "randeu";
-    }
 
-    @RequestMapping("/calendar")
-    public String calendar() {
-        return "calendar";
-    }
-
-    @RequestMapping("/notifications")
-    public String notifications() {
-        return "notifications";
-    }
-
-    @RequestMapping("/account")
-    public String defectDetails() {
-        return "account";
-    }
 
 
 
