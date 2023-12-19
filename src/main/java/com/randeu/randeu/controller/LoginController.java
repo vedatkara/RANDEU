@@ -2,6 +2,7 @@ package com.randeu.randeu.controller;
 import com.randeu.randeu.model.Person;
 import com.randeu.randeu.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,13 +24,23 @@ public class LoginController {
 
     @RequestMapping("/randeu")
     public String userSignIn(@ModelAttribute Person person, Model model){
-        Person user = loginService.authenticate(person.getEmail(), person.getPassword()).getBody();
+        ResponseEntity<Person> responseEntity = loginService.authenticate(person.getEmail(), person.getPassword());
+        HttpStatus statusCode = (HttpStatus) responseEntity.getStatusCode();
 
-        assert user != null;
-        model.addAttribute("name", user.getName());
-        model.addAttribute("surname", user.getSurname());
-
-        return "randeu";
+        if(statusCode == HttpStatus.OK) {
+            Person user = responseEntity.getBody();
+            model.addAttribute("name", user.getName());
+            model.addAttribute("surname", user.getSurname());
+            return "randeu";
+        }else if(statusCode == HttpStatus.BAD_REQUEST){//The person exists but password is wrong.
+            model.addAttribute("wrong_password", "Sorry, your password was incorrect. Please double-check your password.");
+            return "index";
+        }else if (statusCode == HttpStatus.NOT_FOUND) {//The person doesnt exist so that email is wrong.
+            model.addAttribute("wrong_email", "Sorry, your email was not found. Please double-check your email.");
+            return "index";
+        }else {
+            return "index";
+        }
     }
 
 

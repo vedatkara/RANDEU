@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface LoginDao extends JpaRepository<Person, Integer> {
 
-
     @Query(value="SELECT * FROM person p WHERE p.email=:email",nativeQuery = true)
     Person findByEmail(String email);
 

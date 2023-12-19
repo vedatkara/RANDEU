@@ -16,7 +16,7 @@
             <div class="login-card-header">
                 <h1>DOKUZ EYLUL UNIVERSITY<br>APPOINTMENT SYSTEM</h1>
             </div>
-            <form class="login-card-form" th:action="randeu" method="post">
+            <form class="login-card-form" th:action="randeu" method="post" object="${person}">
                 <div class="form-item">
                     <span class="form-item-icon material-symbols-rounded">mail</span>
                     <input
@@ -28,7 +28,9 @@
                             autofocus
                     />
                 </div>
-                <div class="form-item">
+                <!-- error message -->
+                <div th:if="${wrong_email}" th:text="${wrong_email}" style="color: red;"></div>
+                <div class="form-item" >
                     <span class="form-item-icon material-symbols-rounded">lock</span>
                     <input
                             id="pw"
@@ -38,6 +40,8 @@
                             required
                     />
                 </div>
+                <!-- error message -->
+                <div th:if="${wrong_password}" th:text="${wrong_password}" style="color: red;"></div>
                 <div class="form-item other">
                     <div class="checkbox">
                         <input type="checkbox" id="rememberMeCheckBox">
