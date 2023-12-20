@@ -14,12 +14,12 @@ public class RandeuController {
     @Autowired
     RandeuService randeuService;
 
-    @RequestMapping("randeu/appointments")
+    @RequestMapping("appointments")
     public String appointments() {
         return "randeu";
     }
 
-    @RequestMapping("randeu/calendar")
+    @RequestMapping("calendar")
     public String calendar(Model model, HttpSession session) {
         Person loggedInUser = (Person) session.getAttribute("loggedInUser");
         if (loggedInUser != null) {
@@ -29,7 +29,7 @@ public class RandeuController {
         return "calendar";
     }
 
-    @RequestMapping("randeu/notifications")
+    @RequestMapping("notifications")
     public String notifications(Model model, HttpSession session) {
         Person loggedInUser = (Person) session.getAttribute("loggedInUser");
         if (loggedInUser != null) {
@@ -39,7 +39,7 @@ public class RandeuController {
         return "notifications";
     }
 
-    @RequestMapping("randeu/account")
+    @RequestMapping("account")
     public String defectDetails(Model model, HttpSession session) {
         Person loggedInUser = (Person) session.getAttribute("loggedInUser");
         if (loggedInUser != null) {

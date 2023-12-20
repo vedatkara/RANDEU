@@ -18,35 +18,17 @@ body {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 105px;
+    width: 240px;
     height: 100vh;
     padding: 30px 1.7rem;
     color: white;
     overflow: hidden;
-    transition: all 0.5 linear;
     background: rgba(0, 72, 138, 0.8);
 }
 
-.sidebar:hover {
-    width: 270px;
-    transition: 0.5s;
-}
-
-.sidebar logo img:first-child {
-    width: 50px;
-    padding: 20px;
-}
-
-.sidebar logo img:last-child {
-    display: none;
-}
-
-.sidebar:hover logo img:last-child {
-    display: block;
-}
-
-.sidebar:hover logo img:first-child {
-    display: none;
+.sidebar logo img {
+    max-width: 150px;
+    padding: 5px;
 }
 
 .menu {

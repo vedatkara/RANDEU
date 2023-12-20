@@ -32,7 +32,7 @@ public class LoginController {
             Person user = responseEntity.getBody();
             model.addAttribute("name", user.getName());
             model.addAttribute("surname", user.getSurname());
-            // Oturum bilgilerini sakla
+            // Keep the session info
             session.setAttribute("loggedInUser", user);
             return "randeu";
         }else if(statusCode == HttpStatus.BAD_REQUEST){//The person exists but password is wrong.
