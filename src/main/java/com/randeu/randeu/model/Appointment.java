@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name="appointment")
 public class Appointment {
 
     @Id
@@ -15,7 +14,12 @@ public class Appointment {
     private int id;
     private LocalDateTime date;
     private String subject;
+
+    @OneToOne
+    @JoinColumn(name = "addressId",insertable = false,updatable = false)
+    private Address address;
     private int addressId;
+
     private int duration;
     private int studentId;
     private int lecturerId;

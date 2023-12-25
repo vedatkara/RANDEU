@@ -15,9 +15,20 @@ public class AppointmentService {
     @Autowired
     AppointmentRepository appointmentRepository;
 
-    public ResponseEntity<List<Appointment>> getAppointments(int id){
+    public List<Appointment> getStudentAppointmentsById(int id){
         try{
-            return new ResponseEntity<>(appointmentRepository.findAppointmentsByStudentId(id), HttpStatus.OK);
+            return appointmentRepository.findAppointmentsByStudentId(id);
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    public ResponseEntity<List<Appointment>> getLecturerAppointmentsById(int id){
+        try{
+            return new ResponseEntity<>(appointmentRepository.findAppointmentsByLecturerId(id), HttpStatus.OK);
 
         }
         catch (Exception e) {

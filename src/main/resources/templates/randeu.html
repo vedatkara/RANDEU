@@ -68,12 +68,12 @@
         </div>
 
     </div>
-    <div class="card-container">
-        <div class="card">
+    <div class="card-container" th:each="appointment : ${appointments}">
+        <div class="card" >
             <div class="card-inner">
-                <p class="appointment-date-text js-appointment-date-text">01.01.2024 13:50</p>
-                <p class="lecturer-name js-lecturer-name">Semih UTKU</p>
-                <p class="address js-address">Computer Engineering 302</p>
+                <p class="appointment-date-text js-appointment-date-text" th:text="${appointment.date}"></p>
+                <p class="lecturer-name js-lecturer-name" th:text="${appointment.lecturerId}"></p>
+                <p class="address js-address" th:text="${appointment.addressId}"></p>
             </div>
         </div>
     </div>

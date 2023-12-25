@@ -25,8 +25,10 @@ public class AppointmentController {
     public String appointments(Model model, HttpSession session) {
         Person loggedInUser = (Person) session.getAttribute("loggedInUser");
         if (loggedInUser != null) {
+            int id = loggedInUser.getId();
             model.addAttribute("name", loggedInUser.getName());
             model.addAttribute("surname", loggedInUser.getSurname());
+            model.addAttribute("appointments", appointmentService.getStudentAppointmentsById(id));
         }
         return "randeu";
     }
