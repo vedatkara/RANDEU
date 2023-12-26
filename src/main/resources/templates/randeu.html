@@ -72,8 +72,8 @@
         <div class="card" >
             <div class="card-inner">
                 <p class="appointment-date-text js-appointment-date-text" th:text="${appointment.date}"></p>
-                <p class="lecturer-name js-lecturer-name" th:text="${appointment.lecturerId}"></p>
-                <p class="address js-address" th:text="${appointment.addressId}"></p>
+                <p class="lecturer-name js-lecturer-name" th:text="${appointment.lecturer.name}"></p>
+                <p class="address js-address" th:text="${appointment.address.campus}"></p>
             </div>
         </div>
     </div>

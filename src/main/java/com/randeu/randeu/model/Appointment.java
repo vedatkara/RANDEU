@@ -2,25 +2,41 @@ package com.randeu.randeu.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
 
+import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
-public class Appointment {
+public class Appointment implements Serializable {
+
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private LocalDateTime date;
+    @Column(name = "apid", nullable = false)
+    private Integer id;
+
+    @Column(name = "date", nullable = false)
+    private Instant date;
+
+    @Column(name = "subject", length = 100)
     private String subject;
 
-    @OneToOne
-    @JoinColumn(name = "addressId",insertable = false,updatable = false)
-    private Address address;
-    private int addressId;
+    @Column(name = "duration", nullable = false)
+    private Integer duration;
 
-    private int duration;
-    private int studentId;
-    private int lecturerId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "address_id", nullable = false)
+    private Address address;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "student_id", nullable = false)
+    private Person student;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "lecturer_id", nullable = false)
+    private Person lecturer;
+
 }

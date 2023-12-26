@@ -1,19 +1,22 @@
 package com.randeu.randeu.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
 public class Schedule {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private LocalDateTime date;
+    @Column(name = "sid", nullable = false)
+    private Integer id;
+
+    @Column(name = "date")
+    private Instant date;
+
 }

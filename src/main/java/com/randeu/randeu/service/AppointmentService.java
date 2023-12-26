@@ -2,6 +2,8 @@ package com.randeu.randeu.service;
 
 import com.randeu.randeu.dao.AppointmentRepository;
 import com.randeu.randeu.model.Appointment;
+import jakarta.persistence.EntityManager;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ public class AppointmentService {
 
     @Autowired
     AppointmentRepository appointmentRepository;
+
 
     public List<Appointment> getStudentAppointmentsById(int id){
         try{
