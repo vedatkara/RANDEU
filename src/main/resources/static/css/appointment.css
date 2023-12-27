@@ -12,7 +12,7 @@
     justify-content: baseline;
     min-width: 150px;
     min-height: 300px;
-    width: 200px;
+    width: 250px;
     padding: 25px;
     background-color: white;
     box-sizing: border-box;
@@ -23,7 +23,7 @@
     backdrop-filter: blur(8px);
 }
 
-.appointment-date-text {
+.date {
     font-size: large;
     font-weight: 600;
     margin-bottom: 10px;
