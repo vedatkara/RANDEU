@@ -9,11 +9,12 @@
 .card {
     display: flex;
     flex-direction: column;
-    justify-content: baseline;
+    justify-content: space-around;
     min-width: 150px;
     min-height: 300px;
-    width: 250px;
-    padding: 25px;
+    width: 300px;
+    height: 350px;
+    padding:0 25px 25px 25px;
     background-color: white;
     box-sizing: border-box;
     border: 1px solid rgba(255, 255, 255, .25);
@@ -23,17 +24,86 @@
     backdrop-filter: blur(8px);
 }
 
-.date {
+.appointment-date-text {
     font-size: large;
     font-weight: 600;
     margin-bottom: 10px;
 }
 
-.lecturer-name {
+.name {
     margin-bottom: 5px;
 }
 
 .card:hover {
-    border-left: 7px solid #00b627;
+    transform: translateY(-8px);
+    transition: all 0.5s;
 
+}
+
+.status {
+    padding: 0 1.5rem;
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: grid;
+    gap: 0.5ch;
+    height: 10%;
+    align-content: center;
+    border-radius: 20px;
+}
+
+.approved {
+    color: rgb(16, 114, 16);
+}
+
+.rejected {
+    color: red;
+}
+
+.pending{
+    color: orange;
+}
+
+.button-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    gap: 0.5ch;
+    padding: 25px;
+    align-items: center;
+}
+
+.btn {
+    border: 1px solid transparent;
+    padding: 12px 24px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btn + .btn {
+    margin-left: 10px;
+}
+
+.approve {
+    background: green;
+    color: white;
+}
+
+.approve:hover {
+    border: 1px solid green;
+    background: rgb(163, 163, 163);
+    color: green;
+}
+
+.reject {
+    background: red;
+    color: white;
+}
+
+.reject:hover {
+    border: 1px solid red;
+    background: rgb(163, 163, 163);
+    color: red;
 }

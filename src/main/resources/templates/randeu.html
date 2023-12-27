@@ -68,15 +68,42 @@
         </div>
 
     </div>
-    <div class="card-container" th:each="appointment : ${appointments}">
+    <div class="card-container" th:switch="${user}" th:each="appointment : ${appointments}">
         <div class="card" >
             <div class="card-inner">
-                <p><strong><span th:text="${#dates.format(appointment.date, 'dd MMM yyyy hh:mm')}"></span></strong></p>
-                <p class="lecturer-name" th:text="${appointment.lecturer.name} + ' ' + ${appointment.lecturer.surname}"></p>
-                <p><strong>Campus: </strong><span th:text="${appointment.address.campus}"></span></p>
-                <p><strong>Building: </strong><span th:text="${appointment.address.facBuilding}"></span></p>
-                <p><strong>Room No: </strong><span th:text="${appointment.address.roomNo}"></span></p>
-                <p><strong>Subject: </strong><span  th:text="${appointment.subject}"></span></p>
+                <div th:case="'student'">
+                    <p ><strong><span th:text="${#dates.format(appointment.date, 'dd MMM yyyy hh:mm')}"></span></strong></p>
+                    <p class="name" th:text="${appointment.lecturer.name} + ' ' + ${appointment.lecturer.surname}"></p>
+                    <p><strong>Campus: </strong><span th:text="${appointment.address.campus}"></span></p>
+                    <p><strong>Building: </strong><span th:text="${appointment.address.facBuilding}"></span></p>
+                    <p><strong>Room No: </strong><span th:text="${appointment.address.roomNo}"></span></p>
+                    <p><strong>Subject: </strong><span  th:text="${appointment.subject}"></span></p>
+                    <div th:switch="${appointment.statusType}" class="status">
+                        <p th:case="${appointment.statusType.APPROVED}" class="approved">APPROVED</p>
+                        <p th:case="${appointment.statusType.REJECTED}" class="rejected">REJECTED</p>
+                        <p th:case="${appointment.statusType.PENDING}" class="pending">PENDING</p>
+                        <p th:case="'*'" class="pending">PENDING</p>
+                    </div>
+                </div>
+                <div th:case="'lecturer'">
+                    <p ><strong><span th:text="${#dates.format(appointment.date, 'dd MMM yyyy hh:mm')}"></span></strong></p>
+                    <p class="name" th:text="${appointment.student.name} + ' ' + ${appointment.student.surname}"></p>
+                    <p><strong>Campus: </strong><span th:text="${appointment.address.campus}"></span></p>
+                    <p><strong>Building: </strong><span th:text="${appointment.address.facBuilding}"></span></p>
+                    <p><strong>Room No: </strong><span th:text="${appointment.address.roomNo}"></span></p>
+                    <p><strong>Subject: </strong><span  th:text="${appointment.subject}"></span></p>
+                    <div th:switch="${appointment.statusType}" class="button-wrapper">
+                        <div th:case="${appointment.statusType.PENDING}">
+                            <a class="btn approve" th:href="@{/appointments/approve-appointment}" th:object="${appointment}"
+                               th:method="post">APPROVE</a>
+                            <a class="btn reject">REJECT</a>
+                        </div>
+                        <div class="status">
+                        <p th:case="${appointment.statusType.APPROVED}" class="approved">APPROVED</p>
+                        <p th:case="${appointment.statusType.REJECTED}" class="rejected">REJECTED</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

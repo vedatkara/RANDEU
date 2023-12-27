@@ -3,6 +3,8 @@ package com.randeu.randeu.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -27,6 +29,8 @@ public class Appointment implements Serializable {
     @Column(name = "duration", nullable = false)
     private Integer duration;
 
+
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
@@ -38,5 +42,10 @@ public class Appointment implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "lecturer_id", nullable = false)
     private Person lecturer;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status_type")
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private StatusType statusType;
 
 }

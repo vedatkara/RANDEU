@@ -2,11 +2,8 @@ package com.randeu.randeu.service;
 
 import com.randeu.randeu.dao.AppointmentRepository;
 import com.randeu.randeu.model.Appointment;
-import jakarta.persistence.EntityManager;
-import org.hibernate.Session;
+import com.randeu.randeu.model.StatusType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,14 +26,18 @@ public class AppointmentService {
         }
     }
 
-    public ResponseEntity<List<Appointment>> getLecturerAppointmentsById(int id){
+    public List<Appointment> getLecturerAppointmentsById(int id){
         try{
-            return new ResponseEntity<>(appointmentRepository.findAppointmentsByLecturerId(id), HttpStatus.OK);
+            return appointmentRepository.findAppointmentsByLecturerId(id);
 
         }
         catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
+            return new ArrayList<>();
         }
+    }
+
+    public void setStatusType(int id, StatusType statusType) {
+        appointmentRepository.setStatusType(id, statusType);
     }
 }
