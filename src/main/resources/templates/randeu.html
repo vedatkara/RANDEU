@@ -92,12 +92,15 @@
                     <p><strong>Building: </strong><span th:text="${appointment.address.facBuilding}"></span></p>
                     <p><strong>Room No: </strong><span th:text="${appointment.address.roomNo}"></span></p>
                     <p><strong>Subject: </strong><span  th:text="${appointment.subject}"></span></p>
+
                     <div th:switch="${appointment.statusType}" class="button-wrapper">
                         <div th:case="${appointment.statusType.PENDING}">
-                            <a class="btn approve" th:href="@{/appointments/approve-appointment}" th:object="${appointment}"
-                               th:method="post">APPROVE</a>
-                            <a class="btn reject">REJECT</a>
+                            <a class="btn approve" th:href="@{/approve-appointment/{apid}(apid=${appointment.id})}">
+                               >APPROVE</a>
+                            <a class="btn reject" th:href="@{/reject-appointment/{apid}(apid=${appointment.id})}">
+                                >REJECT</a>
                         </div>
+
                         <div class="status">
                         <p th:case="${appointment.statusType.APPROVED}" class="approved">APPROVED</p>
                         <p th:case="${appointment.statusType.REJECTED}" class="rejected">REJECTED</p>

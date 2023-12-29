@@ -9,27 +9,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("appointments")
+@RequestMapping
 public class AppointmentController {
 
     @Autowired
     AppointmentService appointmentService;
 
-    @RequestMapping
+    @RequestMapping("appointments")
     public String appointments(Model model, HttpSession session) {
         Person loggedInUser = (Person) session.getAttribute("loggedInUser");
         if (loggedInUser != null) {
             int id = loggedInUser.getId();
 
-            //check if user student or lecturer
+            //check whether user student or lecturer
             int first_digit = Integer.parseInt(Integer.toString(id).substring(0, 1));
             String user = "";
             if (first_digit == 2) {
@@ -48,9 +47,19 @@ public class AppointmentController {
         return "randeu";
     }
 
-    @RequestMapping(value = "/approve-appointment", method = RequestMethod.POST)
-    public String approveAppointment(Model Model, @ModelAttribute("appointment") Appointment appointment){
-        appointmentService.setStatusType(appointment.getId(), StatusType.APPROVED);
-        return "redirect:/appointments";
+    @RequestMapping(value = "/approve-appointment/{apid}", method = RequestMethod.GET)
+    public RedirectView approveAppointment(@PathVariable(name = "apid") int apid){
+        appointmentService.setStatusType(apid, "APPROVED");
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/appointments");
+        return redirectView;
+    }
+
+    @RequestMapping(value = "/reject-appointment/{apid}", method = RequestMethod.GET)
+    public RedirectView rejectAppointment(@PathVariable(name = "apid") int apid){
+        appointmentService.setStatusType(apid, "REJECTED");
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/appointments");
+        return redirectView;
     }
 }

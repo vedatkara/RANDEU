@@ -37,7 +37,7 @@ public class AppointmentService {
         }
     }
 
-    public void setStatusType(int id, StatusType statusType) {
+    public void setStatusType(int id, String statusType) {
         appointmentRepository.setStatusType(id, statusType);
     }
 }

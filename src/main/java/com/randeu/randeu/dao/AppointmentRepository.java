@@ -4,6 +4,8 @@ import com.randeu.randeu.model.Appointment;
 import com.randeu.randeu.model.Person;
 import com.randeu.randeu.model.StatusType;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +17,7 @@ import java.util.List;
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
 
 
+
     @Query(value="SELECT * FROM appointment a WHERE a.student_id=:studentId",nativeQuery = true)
     List<Appointment> findAppointmentsByStudentId(int studentId);
 
@@ -22,7 +25,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
     List<Appointment> findAppointmentsByLecturerId(int lecturerId);
 
     @Modifying
+    @Transactional
     @Query(value= "UPDATE appointment a SET status_type=:statusType WHERE a.apid =:id",nativeQuery = true)
-    void setStatusType(int id, StatusType statusType);
+    void setStatusType(int id, String statusType);
 
 }
