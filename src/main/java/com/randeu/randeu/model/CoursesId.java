@@ -2,18 +2,25 @@ package com.randeu.randeu.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@Data
 @Embeddable
 public class CoursesId implements Serializable {
+
+    @Serial
     private static final long serialVersionUID = 8840780940491769271L;
+
     @Column(name = "course_id", nullable = false)
     private Integer courseId;
 

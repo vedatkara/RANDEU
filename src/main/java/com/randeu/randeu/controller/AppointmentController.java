@@ -1,11 +1,13 @@
 package com.randeu.randeu.controller;
 
+import com.randeu.randeu.model.Address;
 import com.randeu.randeu.model.Appointment;
 import com.randeu.randeu.model.Person;
 import com.randeu.randeu.model.StatusType;
 import com.randeu.randeu.service.AppointmentService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.Instant;
 import java.util.List;
 
 @Controller
@@ -61,5 +64,21 @@ public class AppointmentController {
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/appointments");
         return redirectView;
+    }
+
+    @RequestMapping(value = "/new-appointment/{date}/{subject}/{duration}/{address}/{student}/{lecturer}", method = RequestMethod.POST)
+    public RedirectView newAppointment(@PathVariable(name = "date") Instant date,
+                                       @PathVariable(name = "subject") String subject,
+                                        @PathVariable(name = "duration") int duration,
+                                       @PathVariable(name = "address") Address address,
+                                       @PathVariable(name = "student") Person student,
+                                       @PathVariable(name = "lecturer") Person lecturer) {
+
+        Appointment appointment = new Appointment(date, subject, duration, address, student, lecturer, StatusType.PENDING);
+        appointmentService.save(appointment);
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/appointments");
+        return redirectView;
+
     }
 }

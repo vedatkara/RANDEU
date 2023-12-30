@@ -1,20 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 240px;
+    height: 100vh;
+    padding: 30px 1.7rem;
+    color: white;
+    overflow: hidden;
+    background: rgba(0, 72, 138, 0.8);
+}
+
+.sidebar logo img {
+    max-width: 150px;
+    padding: 5px;
+}
+
+.menu {
+    margin-top: 100px;
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    padding: 1rem;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu li:hover, .active {
+    background: #e0e0e050;
+}
+
+.menu a {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu a span {
+    overflow: hidden;
+}
+
+.menu a i {
+    font-size: 1.2rem;
+}
+
+.log-out {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.main--content {
+    background-image: linear-gradient(to left top, #4f4f4f, #6a6a6a, #878787, #a5a5a5, #c4c4c4);
+    width: 100%;
+    backdrop-filter: blur(8px);
+    flex-direction: column;
+}
+
+/* ALL ABOUT HEADER*/
+.header--wrapper img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.header--wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: white;
+    /*border-radius: 10px;*/
+    padding: 20px 2rem;
+    margin-bottom: 1rem;
+
+}
+
+.header--title {
+    color: rgba(0, 72, 138, 0.8);
+
+}
+
+.user--info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .card-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
-    margin: 20px 0;
-    padding: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
 }
 
 .card {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    min-width: 150px;
-    min-height: 300px;
-    width: 300px;
-    height: 350px;
-    padding:0 25px 25px 25px;
+    padding:25px;
+    margin: 20px;
     background-color: white;
     box-sizing: border-box;
     border: 1px solid rgba(255, 255, 255, .25);
@@ -106,4 +209,17 @@
     border: 1px solid red;
     background: rgb(163, 163, 163);
     color: red;
+}
+
+.popup {
+    width: 600px;
+    background: white;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 20px;
+    visibility: hidden;
 }

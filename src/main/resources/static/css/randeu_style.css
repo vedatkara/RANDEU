@@ -76,8 +76,7 @@ body {
 
 .main--content {
     position: relative;
-    background: url("../img/background.jpg")
-    center / cover no-repeat fixed;
+    background-image: linear-gradient(to left top, #4f4f4f, #6a6a6a, #878787, #a5a5a5, #c4c4c4);
     width: 100%;
     backdrop-filter: blur(8px);
 }

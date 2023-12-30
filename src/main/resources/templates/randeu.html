@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
     <!-- Custom CSS-->
-    <link rel="stylesheet" th:href="@{/css/randeu_style.css}"/>
-    <link rel="stylesheet" th:href="@{/css/appointment.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/randeu_style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/appointment.css}"/>
     <!-- Icon JS-->
     <script src="https://kit.fontawesome.com/033c9edf1d.js" crossorigin="anonymous"></script>
 
@@ -61,16 +61,13 @@
         <div class="header--title">
             <h2 class="text">APPOINTMENTS</h2>
         </div>
-
         <div class="user--info">
             <span class="text" th:text="${name + ' ' + surname}"></span>
             <img src="../img/user.png" alt="">
         </div>
-
     </div>
     <div class="card-container" th:switch="${user}" th:each="appointment : ${appointments}">
-        <div class="card" >
-            <div class="card-inner">
+        <div class="card"  >
                 <div th:case="'student'">
                     <p ><strong><span th:text="${#dates.format(appointment.date, 'dd MMM yyyy hh:mm')}"></span></strong></p>
                     <p class="name" th:text="${appointment.lecturer.name} + ' ' + ${appointment.lecturer.surname}"></p>
@@ -98,21 +95,22 @@
                             <a class="btn approve" th:href="@{/approve-appointment/{apid}(apid=${appointment.id})}">
                                >APPROVE</a>
                             <a class="btn reject" th:href="@{/reject-appointment/{apid}(apid=${appointment.id})}">
-                                >REJECT</a>
+                                REJECT</a>
                         </div>
-
                         <div class="status">
                         <p th:case="${appointment.statusType.APPROVED}" class="approved">APPROVED</p>
                         <p th:case="${appointment.statusType.REJECTED}" class="rejected">REJECTED</p>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
-    <div class="add-appointment-btn">
-        <button></button>
-    </div>
+        <a class="new-appt-btn" th:href="@{/new-appointment/{date}(date=${date})/{subject}(subject=${subject})/
+        {duration}(duration=${duration})/{address}(address=${address})/{student}(student=${student})/
+        {lecturer}(lecturer=${lecturer})}">Add appointment</a>
+        <div class="popup">
+            <p>bla bla bla</p>
+        </div>
 </div>
 
 

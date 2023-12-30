@@ -10,8 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "Person", schema = "randeu")
 @DiscriminatorValue("not null")
