@@ -13,5 +13,7 @@ public interface LoginRepository extends JpaRepository<Person, Integer> {
     @Query(value="SELECT * FROM person p WHERE p.email=:email",nativeQuery = true)
     Person findByEmail(String email);
 
+    @Query(value="SELECT * FROM person p WHERE p.pid >= 3000",nativeQuery = true)
+    List<Person> getAllLecturers();
 
 }

@@ -3,6 +3,7 @@ package com.randeu.randeu.controller;
 import com.randeu.randeu.model.Appointment;
 import com.randeu.randeu.model.Person;
 import com.randeu.randeu.service.AppointmentService;
+import com.randeu.randeu.service.LoginService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class AppointmentController {
 
     @Autowired
     AppointmentService appointmentService;
+
+    @Autowired
+    LoginService loginService;
 
     @RequestMapping("/appointments")
     public String appointments(Model model, HttpSession session) {
@@ -68,13 +72,7 @@ public class AppointmentController {
     @GetMapping(value = "/new-appointment")
     public String appointmentForm(Model model) {
         model.addAttribute("appointment", new Appointment());
-        model.addAttribute("lecturers", appointmentService.getAllLecturers());
-        System.out.println("asdas");
-        System.out.println(appointmentService.getAllLecturers().isEmpty());
-        for (int i = 0; i < appointmentService.getAllLecturers().size(); i++){
-            System.out.println(appointmentService.getAllLecturers().get(i));
-            System.out.println("*");
-        }
+        model.addAttribute("lecturers", loginService.getAllLecturers());
 
         return "redirect:/appointments";
     }
@@ -101,11 +99,4 @@ public class AppointmentController {
 
         return modelAndView;
     }
-
-    @RequestMapping(value = "/lecturers", method = RequestMethod.GET)
-    public List<Person> getLecturers() {
-        return appointmentService.getAllLecturers();
-    }
-
-
 }

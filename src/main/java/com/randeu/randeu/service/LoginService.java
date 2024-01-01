@@ -37,4 +37,5 @@ public class LoginService {
         }
     }
 
+    public List<Person> getAllLecturers() { return loginRepository.getAllLecturers();}
 }

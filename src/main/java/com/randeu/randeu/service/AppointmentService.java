@@ -47,6 +47,4 @@ public class AppointmentService {
     public void save(Appointment appointment) {
         appointmentRepository.save(appointment);
     }
-
-    public List<Person> getAllLecturers(){ return appointmentRepository.getAllLecturers();}
 }

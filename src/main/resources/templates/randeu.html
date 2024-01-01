@@ -108,10 +108,10 @@
     <button class="btn approve" th:onclick="openPopup()">new</button>
     <div class="popup" id="popup">
         <form action="#" th:action="@{/new-appointment}" th:object="${appointment}" method="post" id="new-appt-form">
-            <select name="lecturerId" class="form-control" id="dropDownList">
-                <option value="0">Select lecturer</option>
-                <option th:each="lecturer : ${lecturers}" th:value="${lecturerId}" th:text="${lecturer.name}"></option>
-            </select>
+<!--            <select name="lecturerId" class="form-control" id="dropDownList">-->
+<!--                <option value="0">Select lecturer</option>-->
+<!--                <option th:each="lecturer : ${lecturers}" th:text="${lecturer.name}"></option>-->
+<!--            </select>-->
             <input type="text" id="subject" name="subject">
             <input type="submit" value="submit" th:onclick="closePopup(), resetInputs()">
         </form>
