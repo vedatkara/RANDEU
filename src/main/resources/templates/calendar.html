@@ -67,98 +67,39 @@
                 <span class="text" th:text="${name + ' ' + surname}"></span>
                 <img src="../img/user.png" alt="">
             </div>
-            
         </div>
-        <div class="calendar-container">
-            <div class="calendar">
-                <table>
-                    <caption style="text-align: center;">WEEKLY SCHEDULE</caption>
-                    <tr class="days">
-                        <th> </th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednesday</th>
-                        <th>Thursday</th>
-                        <th>Friday</th>
-                    </tr>
+        <h1>COURSES</h1>
+        <section>
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                    <thead>
                     <tr>
-                        <td>08.30 - 09:15</td>
-                        <td>
-                            <p>Semih Utku</p>
-                            <p>CME 3301 - Database Management Systems</p></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <th> Course Code </th>
+                        <th> Course Name </th>
+                        <th> Day </th>
+                        <th> Time </th>
+                        <th> Duration </th>
                     </tr>
-                    <tr>
-                        <td>09:25 - 10:10</td>
-                        <td>
-                            <p>Semih Utku</p>
-                            <p>CME 3301 - Database Management Systems</p></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    </thead>
+            </table>
+                <div class="tbl-content">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                    <tr th:if="${courses.empty}">
+                        <td colspan="2"> No Course Available </td>
                     </tr>
-                    <tr>
-                        <td>10:20 - 11:05</td>
-                        <td>
-                            <p>Semih Utku</p>
-                            <p>CME 3301 - Database Management Systems</p></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr th:each="course : ${courses}">
+                        <td><span th:text="${course.courseId}">  </span></td>
+                        <td><span th:text="${course.course.name}">  </span></td>
+                        <td><span th:text="${course.day}">  </span></td>
+                        <td><span th:text="${course.time}">  </span></td>
+                        <td><span th:text="${course.duration}">  </span></td>
                     </tr>
-                    <tr>
-                        <td>11:15 - 12:00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>13:00 - 13:45</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>13:55 - 14:40</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>14:50 - 15:35</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>15:45 - 16:30</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    </tbody>
                 </table>
-
             </div>
         </div>
-
-                </div>
-            </div>
-        </div>
+        </section>
     </div>
 
 

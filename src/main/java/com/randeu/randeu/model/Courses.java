@@ -9,12 +9,11 @@ import lombok.*;
 @IdClass(CoursesId.class)
 public class Courses {
 
+    @Id
+    private Integer courseId;
 
-    @EmbeddedId
-    private CoursesId courseId;
-
-    @EmbeddedId
-    private CoursesId personId;
+    @Id
+    private Integer personId;
 
     @MapsId
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -35,19 +34,19 @@ public class Courses {
     @Column(name = "duration")
     private Integer duration;
 
-    public CoursesId getCourseId() {
+    public Integer getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(CoursesId courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 
-    public CoursesId getPersonId() {
+    public Integer getPersonId() {
         return personId;
     }
 
-    public void setPersonId(CoursesId personId) {
+    public void setPersonId(Integer personId) {
         this.personId = personId;
     }
 

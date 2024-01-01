@@ -108,8 +108,6 @@
     <button class="btn approve" th:onclick="openPopup()">new</button>
     <div class="popup" id="popup">
         <form action="#" th:action="@{/new-appointment}" th:object="${appointment}" method="post" id="new-appt-form">
-            <input type="text" th:field="*{subject}">
-
             <input type="submit" value="submit" th:onclick="closePopup(), resetInputs()">
         </form>
     </div>

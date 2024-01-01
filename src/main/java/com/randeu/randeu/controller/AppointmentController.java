@@ -1,30 +1,29 @@
 package com.randeu.randeu.controller;
 
-import com.randeu.randeu.model.Address;
 import com.randeu.randeu.model.Appointment;
 import com.randeu.randeu.model.Person;
-import com.randeu.randeu.model.StatusType;
 import com.randeu.randeu.service.AppointmentService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.Instant;
 import java.util.List;
 
 @Controller
-@RequestMapping("appointments")
+@RequestMapping
 public class AppointmentController {
 
     @Autowired
     AppointmentService appointmentService;
 
-    @RequestMapping
+    @RequestMapping("/appointments")
     public String appointments(Model model, HttpSession session) {
         Person loggedInUser = (Person) session.getAttribute("loggedInUser");
         if (loggedInUser != null) {
@@ -36,14 +35,17 @@ public class AppointmentController {
             if (first_digit == 2) {
                 user = "student";
                 model.addAttribute("appointments", appointmentService.getStudentAppointmentsById(id));
+                model.addAttribute("appointment", new Appointment());
             }
             else {
                 user = "lecturer";
                 model.addAttribute("appointments", appointmentService.getLecturerAppointmentsById(id));
+                model.addAttribute("appointment", new Appointment());
             }
             model.addAttribute("user", user);
             model.addAttribute("name", loggedInUser.getName());
             model.addAttribute("surname", loggedInUser.getSurname());
+
 
         }
         return "randeu";
@@ -66,17 +68,32 @@ public class AppointmentController {
     }
 
     @GetMapping(value = "/new-appointment")
-    public RedirectView appointmentForm(Model model) {
+    public String appointmentForm(Model model) {
         model.addAttribute("appointment", new Appointment());
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("/appointments");
-        return redirectView;
+        return "redirect:/appointments";
     }
 
     @PostMapping(value = "/new-appointment")
-    public String appointmentSubmit(@ModelAttribute Appointment appointment, Model model) {
-        model.addAttribute("appointment", appointment);
-        return "randeu";
+    public ModelAndView appointmentSubmit(@ModelAttribute Appointment appointment, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        // Validate the appointment
+        // Your validation logic here
+
+        if (bindingResult.hasErrors()) {
+            // If there are validation errors, set the view name and model attributes
+            modelAndView.setViewName("redirect:/new-appointment");
+            modelAndView.addObject("org.springframework.validation.BindingResult.appointment", bindingResult);
+            modelAndView.addObject("appointment", appointment);
+        } else {
+            // If validation is successful, proceed to save the appointment or perform other actions
+            // ...
+
+            // Set the view name for the successful redirect
+            modelAndView.setViewName("redirect:/appointments");
+        }
+
+        return modelAndView;
     }
 
 }
