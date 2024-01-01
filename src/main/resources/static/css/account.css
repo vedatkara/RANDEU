@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.card-outer{
+    display:flex;
+    margin-left:20px;
+}
+
+.card-outer h1.text {
+    font-size: 100px;
+}
+
+.card-inner{
+    margin-left:195px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-item {
+    background-color: #ccc;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    width: 500px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+}
+
+.edit-button {
+  font:sans-serif;
+  font-size:16px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-decoration: underline;
+  cursor: pointer;
+  float: right;
+}
+
+.info-item:hover .edit-button {
+  visibility: visible;
+  opacity: 1;
+}
+
+.phone-edit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.phone-edit-container input {
+    font-family: sans-serif;
+    font-size: 16px;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+
+.phone-edit-container button {
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0 25px;
+}
+
+.phone-edit-container button.save-button {
+    color: green;
+}
+
+.phone-edit-container button.cancel-button {
+    color: red;
+}
+
+
+
+
+

@@ -10,6 +10,7 @@
 
     <!-- Custom CSS-->
     <link rel="stylesheet" th:href="@{/css/randeu_style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/account.css}"/>
     
     <!-- Icon JS-->
     <script src="https://kit.fontawesome.com/033c9edf1d.js" crossorigin="anonymous"></script>
@@ -17,7 +18,6 @@
 
 </head>
 <body>
-
     <div class="sidebar">
         <div class="logo">
             <img src="../img/randeu_open-176x32.png" alt="">
@@ -66,19 +66,31 @@
                 <span class="text" th:text="${name + ' ' + surname}"></span>
                 <img src="../img/user.png" alt="">
             </div>
-            
+
         </div>
+
         <div class="card-container">
             <div class="card">
-                <div class="card-inner">                
 
+                <div class="card-outer" style="position:relative;">
+                    <h1 class="text" style="position:absolute;" th:text="${img} "></h1>
+                </div>
+
+                <div class="card-inner">
+                    <p class="info-item">Name: <span th:text="${name}" ></span></p>
+                    <p class="info-item">Surname: <span th:text="${surname}"></span></p>
+                    <p class="info-item">Phone: <span id="phone" th:text="${phone}"></span>
+                        <button class="edit-button" onclick="editPhone()">✏️Edit</button></p>
+                    <p class="info-item">Email: <span th:text="${email}"></span></p>
+                    <p class="info-item">Department: <span th:text="${department}"></span></p>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <!-- Custom JS-->
+ <!-- Custom JS-->
     <script src="../js/appointments.js"></script>
+    <script src="../js/phone.js"></script>
 </body>
 </html>
