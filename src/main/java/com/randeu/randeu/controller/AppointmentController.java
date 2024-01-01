@@ -35,12 +35,10 @@ public class AppointmentController {
             if (first_digit == 2) {
                 user = "student";
                 model.addAttribute("appointments", appointmentService.getStudentAppointmentsById(id));
-                model.addAttribute("appointment", new Appointment());
             }
             else {
                 user = "lecturer";
                 model.addAttribute("appointments", appointmentService.getLecturerAppointmentsById(id));
-                model.addAttribute("appointment", new Appointment());
             }
             model.addAttribute("user", user);
             model.addAttribute("name", loggedInUser.getName());
@@ -70,6 +68,14 @@ public class AppointmentController {
     @GetMapping(value = "/new-appointment")
     public String appointmentForm(Model model) {
         model.addAttribute("appointment", new Appointment());
+        model.addAttribute("lecturers", appointmentService.getAllLecturers());
+        System.out.println("asdas");
+        System.out.println(appointmentService.getAllLecturers().isEmpty());
+        for (int i = 0; i < appointmentService.getAllLecturers().size(); i++){
+            System.out.println(appointmentService.getAllLecturers().get(i));
+            System.out.println("*");
+        }
+
         return "redirect:/appointments";
     }
 
@@ -95,5 +101,11 @@ public class AppointmentController {
 
         return modelAndView;
     }
+
+    @RequestMapping(value = "/lecturers", method = RequestMethod.GET)
+    public List<Person> getLecturers() {
+        return appointmentService.getAllLecturers();
+    }
+
 
 }
