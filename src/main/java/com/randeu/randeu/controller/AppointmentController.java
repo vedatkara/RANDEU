@@ -49,12 +49,6 @@ public class AppointmentController {
         return "randeu";
     }
 
-    @RequestMapping(value = "/approve-appointment", method = RequestMethod.POST)
-    public String approveAppointment(Model Model, @ModelAttribute("appointment") Appointment appointment){
-        appointmentService.setStatusType(appointment.getId(), "APPROVED");
-        return "redirect:/appointments";
-    }
-
     @RequestMapping(value = "/approve-appointment/{apid}", method = RequestMethod.GET)
     public RedirectView approveAppointment(@PathVariable(name = "apid") int apid){
         appointmentService.setStatusType(apid, "APPROVED");
@@ -69,6 +63,20 @@ public class AppointmentController {
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/appointments");
         return redirectView;
+    }
+
+    @GetMapping(value = "/new-appointment")
+    public RedirectView appointmentForm(Model model) {
+        model.addAttribute("appointment", new Appointment());
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/appointments");
+        return redirectView;
+    }
+
+    @PostMapping(value = "/new-appointment")
+    public String appointmentSubmit(@ModelAttribute Appointment appointment, Model model) {
+        model.addAttribute("appointment", appointment);
+        return "randeu";
     }
 
 }

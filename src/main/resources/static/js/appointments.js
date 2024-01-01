@@ -1,17 +1,14 @@
 
+let popup = document.getElementById("popup");
 
-let cardHTML = ` `;
-appointments.forEach((appointment) => {
-    cardHTML += `
-        <div class="card-container">
-        <div class="card">
-            <div class="card-inner">
-                <p class="appointment-date-text js-appointment-date-text">${appointment.getDat}</p>
-                <p class="lecturer-name js-lecturer-name">${appointment.getLecturerId.getName} 
-                ${appointment.getLecturerId.getSurname}</p>
-                <p class="address js-address">${appointment.getAddressId.getFaculty} ${appointment.getAddressId.getRoomNo}</p>
-            </div>
-        </div>
-    </div>
-    `;
-});
+function openPopup() {
+    popup.classList.add("open-popup");
+}
+
+function closePopup() {
+    popup.classList.remove("open-popup");
+}
+
+function resetInputs() {
+    document.getElementById("new-appt-form").reset();
+}

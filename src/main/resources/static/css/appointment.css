@@ -223,3 +223,8 @@
     padding: 20px;
     visibility: hidden;
 }
+
+.open-popup{
+    visibility: visible;
+
+}
