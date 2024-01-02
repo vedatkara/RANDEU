@@ -18,7 +18,7 @@ public class Appointment implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "apid", nullable = false)
     private Integer id;
 

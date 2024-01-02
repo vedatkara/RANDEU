@@ -1,5 +1,6 @@
 package com.randeu.randeu.controller;
 
+import com.randeu.randeu.dao.AddressService;
 import com.randeu.randeu.model.Appointment;
 import com.randeu.randeu.model.Notification;
 import com.randeu.randeu.model.Person;
@@ -34,6 +35,9 @@ public class AppointmentController {
     @Autowired
     NotificationService notificationService;
 
+    @Autowired
+    AddressService addressService;
+
     @RequestMapping("/appointments")
     public String appointments(Model model, HttpSession session) {
         Person loggedInUser = (Person) session.getAttribute("loggedInUser");
@@ -51,6 +55,7 @@ public class AppointmentController {
                 user = "lecturer";
                 model.addAttribute("appointments", appointmentService.getLecturerAppointmentsById(id));
             }
+            model.addAttribute("lecturers", loginService.getAllLecturers());
             model.addAttribute("user", user);
             model.addAttribute("name", loggedInUser.getName());
             model.addAttribute("surname", loggedInUser.getSurname());
@@ -91,34 +96,34 @@ public class AppointmentController {
         return redirectView;
     }
 
-    @GetMapping(value = "/new-appointment")
-    public String appointmentForm(Model model) {
-        model.addAttribute("appointment", new Appointment());
-        model.addAttribute("lecturers", loginService.getAllLecturers());
+//    @RequestMapping(value = "/new-appointment-form")
+//    public String appointmentForm(Model model) {
+//        model.addAttribute("appointment", new Appointment());
+//        model.addAttribute("lecturers", loginService.getAllLecturers());
+//        System.out.println("sadpaosdas");
+//        return "redirect:/new-appointment-form";
+//    }
 
-        return "redirect:/appointments";
-    }
-
-    @PostMapping(value = "/new-appointment")
-    public ModelAndView appointmentSubmit(@ModelAttribute Appointment appointment, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-        ModelAndView modelAndView = new ModelAndView();
-
-        // Validate the appointment
-        // Your validation logic here
-
-        if (bindingResult.hasErrors()) {
-            // If there are validation errors, set the view name and model attributes
-            modelAndView.setViewName("redirect:/new-appointment");
-            modelAndView.addObject("org.springframework.validation.BindingResult.appointment", bindingResult);
-            modelAndView.addObject("appointment", appointment);
-        } else {
-            // If validation is successful, proceed to save the appointment or perform other actions
-            // ...
-
-            // Set the view name for the successful redirect
-            modelAndView.setViewName("redirect:/appointments");
-        }
-
-        return modelAndView;
-    }
+//    @PostMapping(value = "/new-appointment-submit")
+//    public ModelAndView appointmentSubmit(@ModelAttribute Appointment appointment, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+//        ModelAndView modelAndView = new ModelAndView();
+//
+//        // Validate the appointment
+//        // Your validation logic here
+//
+//        if (bindingResult.hasErrors()) {
+//            // If there are validation errors, set the view name and model attributes
+//            modelAndView.setViewName("redirect:/new-appointment");
+//            modelAndView.addObject("org.springframework.validation.BindingResult.appointment", bindingResult);
+//            modelAndView.addObject("appointment", appointment);
+//        } else {
+//            // If validation is successful, proceed to save the appointment or perform other actions
+//            // ...
+//
+//            // Set the view name for the successful redirect
+//            modelAndView.setViewName("redirect:/appointments");
+//        }
+//
+//        return modelAndView;
+//    }
 }

@@ -30,6 +30,10 @@ td{
     border-radius: 20px;
     background: green;
     color: white;
+    padding: 10px;
+}
+a {
+    text-underline: none;
 }
 
 ::-webkit-scrollbar {

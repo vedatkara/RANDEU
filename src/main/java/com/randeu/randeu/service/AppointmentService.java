@@ -2,6 +2,7 @@ package com.randeu.randeu.service;
 
 import com.randeu.randeu.dao.AppointmentRepository;
 import com.randeu.randeu.model.Appointment;
+import com.randeu.randeu.model.Notification;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,8 +43,9 @@ public class AppointmentService {
         appointmentRepository.setStatusType(id, statusType);
     }
 
+
     @Transactional
-    public void save(Appointment appointment) {
+    public void saveAppointment(Appointment appointment) {
         appointmentRepository.save(appointment);
     }
 
