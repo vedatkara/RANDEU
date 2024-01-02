@@ -13,8 +13,8 @@ import java.util.List;
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, Integer> {
 
-    @Query(value = "SELECT * FROM notification n WHERE n.pid=:pid", nativeQuery = true)
-    List<Notification> findNotifications(int pid);
+    @Query(value = "SELECT n.nid, message, created_at, is_read, pid FROM notification n WHERE n.pid=:pid", nativeQuery = true)
+    List<Notification> findNotifications(Integer pid);
 
     @Modifying
     @Transactional

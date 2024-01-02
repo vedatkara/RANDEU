@@ -20,8 +20,8 @@ public class NotificationService {
 
     private static final Logger logger = LoggerFactory.getLogger(NotificationService.class);
 
-    public ResponseEntity<List<Notification>> getNotificationsByPid(int id){
-        return new ResponseEntity<>(notificationRepository.findNotifications(id), HttpStatus.OK);
+    public List<Notification> getNotificationsByPid(Integer id){
+        return notificationRepository.findNotifications(id);
     }
 
     public Notification saveNotification(Notification notification) {
@@ -33,7 +33,7 @@ public class NotificationService {
         }
     }
 
-    public void update(Notification notification){
-        notificationRepository.readNotification(notification.getId());
+    public void update(Integer nid){
+        notificationRepository.readNotification(nid);
     }
 }

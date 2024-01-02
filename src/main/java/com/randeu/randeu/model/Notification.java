@@ -1,5 +1,6 @@
 package com.randeu.randeu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,6 +26,7 @@ public class Notification {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "pid", nullable = false)
+    @JsonIgnore /* Prevents recursive call */
     private Person pid;
 
 }

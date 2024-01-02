@@ -25,6 +25,8 @@ public class CalendarController {
 
             model.addAttribute("courses", calendarService.getCourses(id));
         }
+        else
+            return "redirect:/login";
 
         return "calendar";
     }

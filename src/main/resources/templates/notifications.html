@@ -68,13 +68,19 @@
             </div>
             
         </div>
-        <div class="card-container">
-            <div class="card">
-                <div class="card-inner">                
+              <table>
+                  <tr class="table-header">
+                      <td>Date</td>
+                      <td>Message</td>
+                      <td>Read</td>
+                  </tr>
+                  <tr th:each="notification : ${notifications}" class="table-notifications">
+                      <td th:text="${notification.createdAt}"></td>
+                      <td th:text="${notification.message}"></td>
+                      <td th:text="${notification.isRead}"></td>
+                  </tr>
+              </table>
 
-                </div>
-            </div>
-        </div>
     </div>
 
 

@@ -50,6 +50,9 @@ public class AppointmentController {
 
 
         }
+        else
+            return "redirect:/login";
+
         return "randeu";
     }
 

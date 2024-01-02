@@ -28,6 +28,9 @@ public class AccountController {
             model.addAttribute("img",loggedInUser.getName().substring(0,1)+
                     loggedInUser.getSurname().substring(0,1));
         }
+        else
+            return "redirect:/login";
+
         return "account";
     }
 

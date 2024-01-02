@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -23,13 +24,17 @@ public class NotificationController {
         if (loggedInUser != null) {
             model.addAttribute("name", loggedInUser.getName());
             model.addAttribute("surname", loggedInUser.getSurname());
+            model.addAttribute("notifications", notificationService.getNotificationsByPid(loggedInUser.getId()));
         }
+        else
+            return "redirect:/login";
+
         return "notifications";
     }
 
-    @RequestMapping("/getNotifications")
-    public ResponseEntity<List<Notification>> getNotifications(HttpSession session) {
-        Person loggedInUser = (Person) session.getAttribute("loggedInUser");
-        return notificationService.getNotificationsByPid(loggedInUser.getId());
+    @RequestMapping("/read-notification/{nid}")
+    public String readNotification(@PathVariable(name = "nid") Integer nid) {
+        notificationService.update(nid);
+        return "redirect:/notifications";
     }
 }
