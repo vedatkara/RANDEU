@@ -32,7 +32,7 @@ public class LoginController {
             model.addAttribute("surname", user.getSurname());
             // Keep the session info
             session.setAttribute("loggedInUser", user);
-            return "randeu";
+            return "redirect:/appointments";
         }else if(statusCode == HttpStatus.BAD_REQUEST){//The person exists but password is wrong.
             model.addAttribute("wrong_password", "Sorry, your password was incorrect. Please double-check your password.");
             return "index";

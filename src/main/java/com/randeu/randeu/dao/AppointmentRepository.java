@@ -29,6 +29,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
     @Query(value= "UPDATE appointment a SET status_type=:statusType WHERE a.apid =:id",nativeQuery = true)
     void setStatusType(int id, String statusType);
 
+    @Query(value="SELECT * FROM appointment a WHERE a.apid=:id",nativeQuery = true)
+    Appointment findAppointmentById(int id);
+
 
 
 }

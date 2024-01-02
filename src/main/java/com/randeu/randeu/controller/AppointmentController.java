@@ -1,9 +1,11 @@
 package com.randeu.randeu.controller;
 
 import com.randeu.randeu.model.Appointment;
+import com.randeu.randeu.model.Notification;
 import com.randeu.randeu.model.Person;
 import com.randeu.randeu.service.AppointmentService;
 import com.randeu.randeu.service.LoginService;
+import com.randeu.randeu.service.NotificationService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping
@@ -26,6 +30,9 @@ public class AppointmentController {
 
     @Autowired
     LoginService loginService;
+
+    @Autowired
+    NotificationService notificationService;
 
     @RequestMapping("/appointments")
     public String appointments(Model model, HttpSession session) {
@@ -59,6 +66,12 @@ public class AppointmentController {
     @RequestMapping(value = "/approve-appointment/{apid}", method = RequestMethod.GET)
     public RedirectView approveAppointment(@PathVariable(name = "apid") int apid){
         appointmentService.setStatusType(apid, "APPROVED");
+        Appointment appointment = appointmentService.findAppointmentById(apid);
+        String lecturerName = appointment.getLecturer().getName() + " " + appointment.getLecturer().getSurname();
+        Notification notification = new Notification(String.format("%s accepted your appointment", lecturerName)
+                ,LocalDate.now(), (byte) 0,
+                appointment.getStudent());
+        notificationService.saveNotification(notification);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/appointments");
         return redirectView;
@@ -67,6 +80,12 @@ public class AppointmentController {
     @RequestMapping(value = "/reject-appointment/{apid}", method = RequestMethod.GET)
     public RedirectView rejectAppointment(@PathVariable(name = "apid") int apid){
         appointmentService.setStatusType(apid, "REJECTED");
+        Appointment appointment = appointmentService.findAppointmentById(apid);
+        String lecturerName = appointment.getLecturer().getName() + " " + appointment.getLecturer().getSurname();
+        Notification notification = new Notification(String.format("%s rejected your appointment", lecturerName)
+                ,LocalDate.now(), (byte) 0,
+                appointment.getStudent());
+        notificationService.saveNotification(notification);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/appointments");
         return redirectView;

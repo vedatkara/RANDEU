@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,87 +10,99 @@
 
     <!-- Custom CSS-->
     <link rel="stylesheet" th:href="@{/css/randeu_style.css}"/>
-    
+    <link rel="stylesheet" th:href="@{/css/notifications.css}"/>
+
     <!-- Icon JS-->
     <script src="https://kit.fontawesome.com/033c9edf1d.js" crossorigin="anonymous"></script>
-    
+
 
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="logo">
-            <img src="../img/randeu_open-176x32.png" alt="">
-        </div>
-        <ul class="menu">
-            <li>
-                <a th:href="@{appointments}" >
+<div class="sidebar">
+    <div class="logo">
+        <img src="../img/randeu_open-176x32.png" alt="">
+    </div>
+    <ul class="menu">
+        <li>
+            <a th:href="@{appointments}">
                 <i class="fa-solid fa-calendar-check"></i>
                 <span>Appointments</span>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{calendar}">
+            </a>
+        </li>
+        <li>
+            <a th:href="@{calendar}">
                 <i class="fa-solid fa-calendar-days"></i>
                 <span>Calendar</span>
-                </a>
-            </li>
-            <li  class="active">
-                <a th:href="@{notifications}">
+            </a>
+        </li>
+        <li class="active">
+            <a th:href="@{notifications}">
                 <i class="fa-solid fa-bell"></i>
                 <span>Notifications</span>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{account}">
+            </a>
+        </li>
+        <li>
+            <a th:href="@{account}">
                 <i class="fa-solid fa-user"></i>
                 <span>Account</span>
-                </a>
-            </li>
-            <li class="log-out">
-                <a th:href="@{login}">
+            </a>
+        </li>
+        <li class="log-out">
+            <a th:href="@{login}">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 <span>Log out</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+            </a>
+        </li>
+    </ul>
+</div>
 
-    <div class="main--content">
-        <div class="header--wrapper">
-            <div class="header--title">
-                <h2 class="text">NOTICIFATIONS</h2>
-            </div>
-
-            <div class="user--info">
-                <span class="text" th:text="${name + ' ' + surname}"></span>
-                <img src="../img/user.png" alt="">
-            </div>
-            
+<div class="main--content">
+    <div class="header--wrapper">
+        <div class="header--title">
+            <h2 class="text">NOTICIFATIONS</h2>
         </div>
-              <table>
-                  <tr class="table-header">
-                      <td>Date</td>
-                      <td>Message</td>
-                      <td>Read</td>
-                  </tr>
-                  <tr th:each="notification : ${notifications}" class="table-notifications">
-                      <td th:text="${notification.createdAt}"></td>
-                      <td th:text="${notification.message}"></td>
-                      <td th:text="${notification.isRead}"></td>
-                  </tr>
-              </table>
+
+        <div class="user--info">
+            <span class="text" th:text="${name + ' ' + surname}"></span>
+            <img src="../img/user.png" alt="">
+        </div>
 
     </div>
+    <div class="table-header">
+        <table>
+            <tr>
+                <td>Date</td>
+                <td>Message</td>
+                <td>Read</td>
+            </tr>
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table>
+            <tbody>
+            <tr th:if="${notifications.empty}">
+                <td colspan="3">There is no notification to show.</td>
+            </tr>
+            <tr th:each="notification : ${notifications}" class="table-notifications">
+                <td th:text="${notification.createdAt}"></td>
+                <td th:text="${notification.message}"></td>
+                <td th:if="${notification.isRead == 0}">
+                    <a class="read-btn" th:href="@{/read-notification/{nid}((nid=${notification.id}))}">
+                        Mark as read</a>
+                </td>
+                <td th:if="${notification.isRead == 1}"></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
 
 
-
-
-
-
-
-
-    <!-- Custom JS-->
-    <script src="../js/appointments.js"></script>
+<!-- Custom JS-->
+<script>
+</script>
 </body>
 </html>

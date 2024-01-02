@@ -18,8 +18,10 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
 
     @Modifying
     @Transactional
-    @Query(value= "UPDATE notification n SET is_read=:1 WHERE n.nid =:id",nativeQuery = true)
+    @Query(value= "UPDATE notification n SET is_read = 1 WHERE n.nid =:id",nativeQuery = true)
     void readNotification(int id);
+
+
 
 
 
